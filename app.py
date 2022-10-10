@@ -28,8 +28,3 @@ if st.button('Submit'):
    with st.sidebar:
        try: 
             predict_upload()
-       #except:
-           # st.warning('''
-           # Unable to detect text. 
-            #Please enter text for prediction. 
-          #  \n\n Thank you 🙏.''')
