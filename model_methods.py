@@ -17,7 +17,7 @@ def predict(image):
         img = img.convert('RGB')
         # Resize the image to the desired size
         img = img.resize((160,160))
-        img = Image.img_to_array(img)
+        img = tf.keras.preprocessing.image.img_to_array(img)
   
         #Preprocess the image to required size and cast
         input_shape = input_details[0]['shape']
