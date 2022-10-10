@@ -15,9 +15,9 @@ def predict(image):
         # Read the image and decode to a tensor
         img = Image.open(io.BytesIO(image.read()))
         img = img.convert('RGB')
-        img = tf.io.decode_image(img)
         # Resize the image to the desired size
         img = cv2.resize(img,(160,160))
+        img = image.img_to_array(img)
   
         #Preprocess the image to required size and cast
         input_shape = input_details[0]['shape']
