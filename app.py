@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 st.title('Eye Disease classifier')
-st.info('Only classifies Cataract, Diabetic retinopathy, Glaucoma or Normal, \n\n unable to give more than 1 classification at a time')
+st.info('Only classifies Cataract, Diabetic retinopathy, Glaucoma or Normal. \n\n Model is restricted to giving 1 class at a time')
 
 new_img = st.file_uploader('PLease upload your retinal image')
 
@@ -27,5 +27,11 @@ def predict_upload():
 # instantiate submit button
 if st.button('Submit'):
    with st.sidebar:
-       #try: 
-       predict_upload()
+       try: 
+            predict_upload()
+       except:
+            st.warning('''
+            Unable to detect image. 
+            Please upload retinal image for classification. 
+            \n\n Thank you 🙏
+            ''')
