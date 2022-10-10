@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import streamlit as st
+import cv2
 
 def predict(image):
         interpreter = tf.lite.Interpreter('ENet_model.tflite')
@@ -8,11 +9,12 @@ def predict(image):
         #get input and output tensors
         input_details = interpreter.get_input_details()
         output_details = interpreter.get_output_details()
-        # read image
-        # Convert the compressed string to a 3D uint8 tensor
-        img = tf.io.decode_image(image, channels=3)
+      
+        # Read the image and decode to a tensor
+        img = cv2.imread(image)
         # Resize the image to the desired size
-        img = tf.image.resize(img, [160, 160])
+        img = cv2.resize(img,(160,160))
+  
         #Preprocess the image to required size and cast
         input_shape = input_details[0]['shape']
         input_tensor= np.array(np.expand_dims(img,0), dtype=np.float32)
