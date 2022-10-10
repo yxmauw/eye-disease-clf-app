@@ -6,7 +6,7 @@ from model_methods import predict
 # configuration of the page
 st.set_page_config(
     layout='centered',
-    page_icon=👁️,
+    page_icon='👁️',
     page_title='Eye Disease Classifier',
     initial_sidebar_state='auto'
 )
