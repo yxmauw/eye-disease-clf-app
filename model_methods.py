@@ -17,7 +17,7 @@ def predict(image):
   img = tf.image.resize(img, [160, 160])
   
   # preprocess new image
-  tf.keras.applications.efficientnet_v2.preprocess_input(img)
+  img = tf.keras.applications.efficientnet_v2.preprocess_input(img)
   
   # load model if not previously loaded
   model = load_model()
