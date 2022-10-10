@@ -13,7 +13,7 @@ def predict(image):
         output_details = interpreter.get_output_details()
       
         # Read the image and decode to a tensor
-        img = Image.open(io.BytesIO(image))
+        img = Image.open(io.BytesIO(image.read()))
         img = img.convert('RGB')
         img = tf.io.decode_image(img)
         # Resize the image to the desired size
