@@ -2,6 +2,8 @@ import numpy as np
 import tensorflow as tf
 import streamlit as st
 import cv2
+from PIL import Image
+import io
 
 def predict(image):
         interpreter = tf.lite.Interpreter('ENet_model.tflite')
@@ -11,7 +13,9 @@ def predict(image):
         output_details = interpreter.get_output_details()
       
         # Read the image and decode to a tensor
-        img = tf.io.decode_image(image)
+        img = Image.open(io.BytesIO(image))
+        img = img.convert('RGB')
+        img = tf.io.decode_image(img)
         # Resize the image to the desired size
         img = cv2.resize(img,(160,160))
   
