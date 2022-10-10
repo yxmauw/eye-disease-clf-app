@@ -19,7 +19,8 @@ new_img = st.file_uploader('PLease upload your retinal image')
 def predict_upload():
   result = predict(new_img) # result is a probabilities array 
   classes = ['cataract', 'diabetic_retinopathy', 'glaucoma', 'normal']
-  pred_prob = (np.format_float_positional(np.max(result, axis=-1), precision=4)) * 100 # max probability
+  max_result = (np.max(result, axis=-1)) * 100 # max probability
+  pred_prob = np.format_float_positional(max_result, precision=2) # format probability
   pred_class = classes[(np.argmax(result, axis=-1)[0])] # string
   st.success(f'There is a {pred_prob} % probability that this retinal image shows {pred_class}')
   
