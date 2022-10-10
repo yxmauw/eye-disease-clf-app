@@ -26,5 +26,5 @@ def predict_upload():
 # instantiate submit button
 if st.button('Submit'):
    with st.sidebar:
-       try: 
-            predict_upload()
+       #try: 
+       predict_upload()
