@@ -21,6 +21,7 @@ def predict_upload():
   st.write(result[0]) 
   st.write(result.shape)
   st.write(type(result))
+  st.write(np.argmax(result, axis=-1))
   classes = ['cataract', 'diabetic_retinopathy', 'glaucoma', 'normal']
   pred_prob = np.format_float_positional(np.max(result, axis=-1), precision=4) # max probability
   pred_class = classes[np.argmax(result, axis=-1)] # string
