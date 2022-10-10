@@ -1,7 +1,7 @@
+# reference https://stackoverflow.com/questions/69134379/how-to-make-prediction-based-on-model-tensorflow-lite
 import numpy as np
 import tensorflow as tf
 import streamlit as st
-import cv2
 from PIL import Image
 import io
 
