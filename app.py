@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 st.title('Eye Disease classifier')
-st.info('Only classifies Cataract, Diabetic retinopathy, Glaucoma or Normal, unable to give more than 1 classification at a time')
+st.info('Only classifies Cataract, Diabetic retinopathy, Glaucoma or Normal, \n\n unable to give more than 1 classification at a time')
 
 new_img = st.file_uploader('PLease upload your retinal image')
 
