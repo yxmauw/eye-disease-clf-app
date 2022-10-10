@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state='auto'
 )
 
-st.title('Eye Disease classifier')
+st.title('👁️ Eye Disease classifier')
 st.info('Only classifies Cataract, Diabetic retinopathy, Glaucoma or Normal. \n\n Model is restricted to giving 1 class at a time')
 
 new_img = st.file_uploader('PLease upload your retinal image')
