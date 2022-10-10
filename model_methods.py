@@ -23,4 +23,4 @@ def predict(image):
         #Run the inference
         interpreter.invoke()
         output_details = interpreter.get_output_details()[0]  
-   return output_details
+        return output_details
