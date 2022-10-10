@@ -24,9 +24,11 @@ def predict(image):
         input_tensor= np.array(np.expand_dims(img,0), dtype=np.float32)
         input_tensor= tf.keras.applications.efficientnet_v2.preprocess_input(input_tensor)
         #set the tensor to point to the input data to be inferred
-        input_index = interpreter.get_input_details()[0]["index"]
-        interpreter.set_tensor(input_index, input_tensor)
+      
+        # Invoke the model on the input data
+        interpreter.set_tensor(input_details[0]['index'], input_tensor)
+
         #Run the inference
         interpreter.invoke()
-        output_details = interpreter.get_output_details()[0]  
+        output_details = interpreter.get_tensor(output_details[0]['index'])
         return output_details
