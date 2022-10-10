@@ -1,7 +1,6 @@
 import numpy as np
 import tensorflow as tf
 import streamlit as st
-import cv2
 
 def predict(image):
    with open('ENet_model.tflite','rb') as f:
