@@ -32,4 +32,4 @@ if st.button('Submit'):
            # st.warning('''
            # Unable to detect text. 
             #Please enter text for prediction. 
-          #  \n\n Thank you 🙏.   ''')
+          #  \n\n Thank you 🙏.''')
