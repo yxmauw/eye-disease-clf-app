@@ -11,7 +11,7 @@ def predict(image):
         output_details = interpreter.get_output_details()
       
         # Read the image and decode to a tensor
-        img = cv2.imread(image)
+        img = tf.io.decode_image(image)
         # Resize the image to the desired size
         img = cv2.resize(img,(160,160))
   
