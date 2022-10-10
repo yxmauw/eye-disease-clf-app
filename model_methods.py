@@ -3,8 +3,7 @@ import tensorflow as tf
 import streamlit as st
 
 def predict(image):
-   with open('ENet_model.tflite','rb') as f:
-        interpreter = tf.lite.Interpreter(model_content=f)
+        interpreter = tf.lite.Interpreter('ENet_model.tflite')
         interpreter.allocate_tensors()
         #get input and output tensors
         input_details = interpreter.get_input_details()
