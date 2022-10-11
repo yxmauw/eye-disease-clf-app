@@ -6,7 +6,7 @@ from PIL import Image
 import io
 import matplotlib.pyplot as plt
 
-def predict(image):
+def predict(image): # to predict raw image input
         interpreter = tf.lite.Interpreter('ENet_model.tflite')
         interpreter.allocate_tensors()
         #get input and output tensors
@@ -25,6 +25,21 @@ def predict(image):
         input_tensor= np.array(np.expand_dims(img,0), dtype=np.float32)
         input_tensor= tf.keras.applications.efficientnet_v2.preprocess_input(input_tensor)
         #set the tensor to point to the input data to be inferred
+      
+        # Invoke the model on the input data
+        interpreter.set_tensor(input_details[0]['index'], input_tensor)
+
+        #Run the inference
+        interpreter.invoke()
+        output_details = interpreter.get_tensor(output_details[0]['index'])
+        return output_details
+
+def tensor_predict(input_tensor): # to predict tensor images
+        interpreter = tf.lite.Interpreter('ENet_model.tflite')
+        interpreter.allocate_tensors()
+        #get input and output tensors
+        input_details = interpreter.get_input_details()
+        output_details = interpreter.get_output_details()
       
         # Invoke the model on the input data
         interpreter.set_tensor(input_details[0]['index'], input_tensor)
@@ -61,12 +76,12 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):
     st.pyplot(im)
     #st.caption('Saliency Map')
     
-def grads(input_im, result): # plot_maps() and predict() function embedded        
+def grads(input_im): # plot_maps() and predict() function embedded        
     with tf.GradientTape() as tape:
         tape.watch(input_im)
-        #result_img = predict(raw_img)
-        max_idx = tf.argmax(result,axis = 1)
-        max_score = tf.math.reduce_max(result[0,max_idx[0]])
+        result_img = tensor_predict(input_im)
+        max_idx = tf.argmax(result_img,axis = 1)
+        max_score = tf.math.reduce_max(result_img[0,max_idx[0]])
         #max_score = result[0,max_idx[0]]
     return tape.gradient(max_score, input_im)
 
