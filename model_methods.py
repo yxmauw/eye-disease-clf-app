@@ -45,7 +45,7 @@ def orig_img(new_img):
     #Preprocess the image to required size and cast
     input_tensor = tf.keras.applications.efficientnet_v2.preprocess_input(input_im)
     #input_tensor = tf.convert_to_tensor(input_array)
-    return input_tensor
+    return input_tensor # output tensor format of image
 
 def normalize_image(img): #normalise image
     grads_norm = img[:,:,0]+ img[:,:,1]+ img[:,:,2]
@@ -58,10 +58,10 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):
     st.pyplot(fig)
     st.caption('Saliency Map')
 
-def plot_gradient_maps(input_im): # plot_maps() and predict() function embedded        
+def plot_gradient_maps(input_im, raw_img): # plot_maps() and predict() function embedded        
     with tf.GradientTape() as tape:
         tape.watch(input_im)
-        result_img = predict(input_im)
+        result_img = predict(raw_img)
         max_idx = tf.argmax(result_img,axis = 1)
         max_score = result_img[0,max_idx[0]]
     grads = tape.gradient(max_score, input_im)
