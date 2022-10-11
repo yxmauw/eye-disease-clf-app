@@ -83,6 +83,7 @@ def grads(input_im): # plot_maps() and predict() function embedded
         max_idx = tf.argmax(result_img,axis = 1)
         max_score = tf.math.reduce_max(result_img[0,max_idx[0]])
         #max_score = result_img[0,max_idx[0]]
+        st.write(max_score)
     return tape.gradient(max_score, input_im)
 
     #grad = grads(input_im, result)# buggy - giving nonetype
