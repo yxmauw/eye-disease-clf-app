@@ -34,20 +34,18 @@ def predict(image):
         output_details = interpreter.get_tensor(output_details[0]['index'])
         return output_details
 
-def orig_img(image):
-    # Read the image and decode to a tensor
-    img = Image.open(io.BytesIO(image.read()))
-    img = img.convert('RGB')
-    # Resize the image to the desired size
-    img = img.resize((160,160))
-    img = tf.keras.preprocessing.image.img_to_array(img)
+def input_img(new_img): #read source image file
+    image = tf.io.decode_raw(new_img, tf.uint8)
+    image = tf.expand_dims(image, axis=0)
+    image = tf.cast(image, tf.float32)
+    image = tf.image.resize(image, [160,160])
+    return image
+def orig_img(new_img):
+    input_im = input_img(new_img)
     #Preprocess the image to required size and cast
-    input_array = np.array(np.expand_dims(img,0), dtype=np.float32)
-    input_array = tf.keras.applications.efficientnet_v2.preprocess_input(input_array)
-    input_tensor = tf.convert_to_tensor(input_array)
+    input_tensor = tf.keras.applications.efficientnet_v2.preprocess_input(input_im)
+    #input_tensor = tf.convert_to_tensor(input_array)
     return input_tensor
-
-# input_im = orig_img(image) # new image
 
 def normalize_image(img): #normalise image
     grads_norm = img[:,:,0]+ img[:,:,1]+ img[:,:,2]
