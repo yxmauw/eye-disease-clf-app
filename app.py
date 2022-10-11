@@ -29,6 +29,9 @@ if st.button('Classify'):
    with st.sidebar:
        try: 
             predict_upload()
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.image(new_img)
        except:
             st.warning('''
             Unable to detect image. 
@@ -36,6 +39,4 @@ if st.button('Classify'):
             \n\n Thank you 🙏
             ''')
             
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.image(new_img)
+    
