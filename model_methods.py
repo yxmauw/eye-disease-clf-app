@@ -61,7 +61,7 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):     # saliency map
         fig, ax = plt.subplots(figsize=(3,3))
         ax.imshow(img1*mix_val+img2/mix_val, cmap = "terrain" )
         plt.axis("off")
-        fig.savefig("temp_fig.png")
+        fig.savefig("temp_fig.png", transparent=True, bbox=False, frameon=False)
         image = Image.open('temp_fig.png')
         st.image(image)
         #st.pyplot(fig)
