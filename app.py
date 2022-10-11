@@ -42,7 +42,5 @@ if st.button('Classify'):
         
    with col2:
         input_im = orig_img(new_img) # output tensor
-        # grad = grads(input_im) # buggy - giving nonetype
         plot_gradient_maps(input_im)
-        
-        #plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
+        st.caption('Saliency map')
