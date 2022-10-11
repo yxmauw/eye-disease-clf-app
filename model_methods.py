@@ -110,7 +110,12 @@ def gradCAM(orig, intensity=0.5, res=250): # function
   heatmap /= np.max(heatmap) # minmax pixel values (0,1)
   heatmap = heatmap.reshape((5, 5)) # reshape to 5x5 array
 
-  img = cv2.imread(orig)
+  # img = cv2.imread(orig) # numpy array
+  img = Image.open(io.BytesIO(orig.getvalue()))
+  img = img.convert('RGB')
+  # Resize the image to the desired size
+  img = img.resize((160,160))
+  img = tf.keras.preprocessing.image.img_to_array(img)
 
   heatmap = cv2.resize(heatmap, (img.shape[1], img.shape[0]))
 
