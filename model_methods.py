@@ -86,4 +86,38 @@ def plot_gradient_maps(input_im): # plot_maps() and predict() function embedded
 
  # Activation heatmap
 import cv2
-from google.colab.patches import cv2_imshow # cv2.imshow does not work on Google Colab notebooks, which is why we are using cv2_imshow instead
+
+def gradCAM(orig, intensity=0.5, res=250): # function
+
+  img = Image.open(io.BytesIO(orig.read()))
+  img = img.convert('RGB')
+  # Resize the image to the desired size
+  img = img.resize((160,160))
+  x = tf.keras.preprocessing.image.img_to_array(img)
+ 
+  x = np.expand_dims(x, axis=0)
+  x = tf.keras.applications.efficientnet_v2.preprocess_input(x) # shape (1,160,160,3)
+
+  with tf.GradientTape() as tape: # Grad-CAM process
+    last_conv_layer = model.get_layer('top_conv')
+    iterate = tf.keras.models.Model([model.inputs], [model.output, last_conv_layer.output]) # create mini model function to get model output
+    model_out, last_conv_layer = iterate(x) # model_out shape (1,4)
+    class_out = model_out[:, np.argmax(model_out[0])]
+    grads = tape.gradient(class_out, last_conv_layer)
+    pooled_grads = K.mean(grads, axis=(0, 1, 2))
+    
+  heatmap = tf.reduce_mean(tf.multiply(pooled_grads, last_conv_layer), axis=-1)
+  heatmap = np.maximum(heatmap, 0) 
+  heatmap /= np.max(heatmap) # minmax pixel values (0,1)
+  heatmap = heatmap.reshape((5, 5)) # reshape to 5x5 array
+
+  img = cv2.imread(orig)
+
+  heatmap = cv2.resize(heatmap, (img.shape[1], img.shape[0]))
+
+  heatmap = cv2.applyColorMap(np.uint8(255*heatmap), cv2.COLORMAP_JET) # multiply 255 to convert to RGB form
+
+  img = heatmap * intensity + img
+  
+  img1 = cv2.resize(img, (res, res)) # visualise heatmap overlay
+  st.image(cv2.imshow(img1))
