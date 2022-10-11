@@ -1,7 +1,7 @@
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-from model_methods import predict, orig_img, normalize_image, plot_maps, plot_gradient_maps
+from model_methods import predict, orig_img, normalize_image, plot_maps, plot_gradient_maps, gradCAM
 
 # configuration of the page
 st.set_page_config(
@@ -46,3 +46,5 @@ if st.button('Classify'):
         st.caption('Saliency map')
         
    with col3:
+        gradCAM(orig=new_img, intensity=0.5, res=250)
+        st.caption('Activation heatmap')
