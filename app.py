@@ -51,8 +51,5 @@ if st.button('Classify'):
             #max_score = result_img[0,max_idx[0]]
         st.write(tape.gradient(max_score, input_im))
         st.write(result_img)
-        st.write(max_score)
-        st.write(input_im)
-        st.write(type(max_score))
-        st.write(type(input_im))
+        st.write(result_img.shape)
         #plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
