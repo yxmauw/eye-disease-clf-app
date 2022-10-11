@@ -65,7 +65,7 @@ def plot_gradient_maps(input_im): # plot_maps() function embedded
     interpreter.allocate_tensors()    
     with tf.GradientTape() as tape:
         tape.watch(input_im)
-        result_img = interpreter(input_im)
+        result_img = interpreter.run(input_im)
         max_idx = tf.argmax(result_img,axis = 1)
         max_score = result_img[0,max_idx[0]]
     grads = tape.gradient(max_score, input_im)
