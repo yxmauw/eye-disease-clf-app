@@ -49,5 +49,5 @@ if st.button('Classify'):
             max_idx = tf.argmax(result_img,axis = 1)
             max_score = tf.math.reduce_max(result_img[0,max_idx[0]]) # tensor max probability
             #max_score = result_img[0,max_idx[0]]
-        grads = tape.gradient(max_score, input_im)
-        plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
+        st.write(tape.gradient(max_score, input_im))
+        #plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
