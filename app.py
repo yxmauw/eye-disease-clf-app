@@ -43,7 +43,7 @@ if st.button('Classify'):
    with col2:
         input_im = orig_img(new_img) # output tensor
         # grad = grads(input_im) # buggy - giving nonetype
-        with tf.GradientTape() as tape:
+        with tf.GradientTape(persistent=True) as tape:
             tape.watch(input_im)
             result_img = tensor_predict(input_im)
             max_idx = tf.argmax(result_img,axis = 1)
