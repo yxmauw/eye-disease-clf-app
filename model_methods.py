@@ -40,24 +40,6 @@ def predict(image): # to predict raw image input
         output_details = interpreter.get_tensor(output_details[0]['index'])
         return output_details
 
-def tensor_predict(input_tensor): # to predict tensor images
-        interpreter = tf.lite.Interpreter('ENet_model.tflite')
-        interpreter.allocate_tensors()
-        #get input and output tensors
-        input_details = interpreter.get_input_details()
-        output_details = interpreter.get_output_details()
-      
-        # Invoke the model on the input data
-        interpreter.set_tensor(input_details[0]['index'], input_tensor)
-
-        #Run the inference
-        interpreter.invoke()
-        output_details = interpreter.get_tensor(output_details[0]['index']) # output np.array
-        
-        #convert to tensor
-        output_details = tf.convert_to_tensor(output_details)
-        return output_details
-
 def orig_img(image):   
     img = Image.open(io.BytesIO(image.read()))
     img = img.convert('RGB')
