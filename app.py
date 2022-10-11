@@ -44,3 +44,5 @@ if st.button('Classify'):
         input_im = orig_img(new_img) # output tensor
         plot_gradient_maps(input_im)
         st.caption('Saliency map')
+        
+   with col3:
