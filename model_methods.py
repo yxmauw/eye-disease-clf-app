@@ -35,7 +35,7 @@ def predict(image):
         return output_details
 
 def input_img(new_img): #read source image file
-    image = tf.io.decode_raw(new_img.read(), tf.uint8)
+    image = tf.io.decode_image(new_img.read())
     image = tf.expand_dims(image, axis=0)
     image = tf.cast(image, tf.float32)
     image = tf.image.resize(image, [160,160])
