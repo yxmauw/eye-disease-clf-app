@@ -11,8 +11,6 @@ st.set_page_config(
     initial_sidebar_state='auto'
 )
 
-col1, col2, col3 = st.columns(3)
-
 st.title('👁️ Eye Disease classifier')
 st.info('Only classifies Cataract, Diabetic retinopathy, Glaucoma or Normal. \n\n Model is restricted to giving 1 class at a time')
 
@@ -37,6 +35,7 @@ if st.button('Classify'):
             Please upload retinal image for classification. 
             \n\n Thank you 🙏
             ''')
+   col1, col2, col3 = st.columns(3)
    with col1:
         st.image(new_img)
     
