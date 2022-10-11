@@ -17,6 +17,7 @@ st.info('Only classifies Cataract, Diabetic retinopathy, Glaucoma or Normal. \n\
 new_img = st.file_uploader('PLease upload your retinal image')
 
 def predict_upload():
+  global result
   result = predict(new_img) # result is a probabilities array 
   classes = ['cataract', 'diabetic_retinopathy', 'glaucoma', 'normal']
   max_result = (np.max(result, axis=-1)) * 100 # max probability
