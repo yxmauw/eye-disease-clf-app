@@ -97,12 +97,12 @@ def gradCAM(orig, intensity=0.5, res=250): # function
   x = tf.keras.applications.efficientnet_v2.preprocess_input(x) # shape (1,160,160,3)
 
   with tf.GradientTape() as tape: # Grad-CAM process
-    last_conv_layer = model.get_layer('top_conv')
-    iterate = tf.keras.models.Model([model.inputs], [model.output, last_conv_layer.output]) # create mini model function to get model output
-    model_out, last_conv_layer = iterate(x) # model_out shape (1,4)
-    class_out = model_out[:, np.argmax(model_out[0])]
-    grads = tape.gradient(class_out, last_conv_layer)
-    pooled_grads = K.mean(grads, axis=(0, 1, 2))
+        last_conv_layer = model.get_layer('top_conv')
+        iterate = tf.keras.models.Model([model.inputs], [model.output, last_conv_layer.output]) # create mini model function to get model output
+        model_out, last_conv_layer = iterate(x) # model_out shape (1,4)
+        class_out = model_out[:, np.argmax(model_out[0])]
+        grads = tape.gradient(class_out, last_conv_layer)
+        pooled_grads = K.mean(grads, axis=(0, 1, 2))
     
   heatmap = tf.reduce_mean(tf.multiply(pooled_grads, last_conv_layer), axis=-1)
   heatmap = np.maximum(heatmap, 0) 
