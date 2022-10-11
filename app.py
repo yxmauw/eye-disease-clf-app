@@ -39,4 +39,4 @@ if st.button('Classify'):
    with col1:
         st.image(new_img)
         st.caption('Original')
-    
+ 
