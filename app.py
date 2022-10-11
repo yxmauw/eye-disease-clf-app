@@ -1,7 +1,7 @@
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-from model_methods import predict
+from model_methods import predict, orig_img, plot_gradient_maps
 
 # configuration of the page
 st.set_page_config(
@@ -39,4 +39,6 @@ if st.button('Classify'):
    with col1:
         st.image(new_img)
         st.caption('Original')
- 
+   with col2:
+        input_im = orig_img(new_img)
+        plot_gradient_maps(input_im)
