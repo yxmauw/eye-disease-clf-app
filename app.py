@@ -50,6 +50,7 @@ if st.button('Classify'):
             max_score = tf.math.reduce_max(result_img[0,max_idx[0]]) # tensor max probability
             #max_score = result_img[0,max_idx[0]]
         st.write(tape.gradient(max_score, input_im))
+        st.write(result_img)
         st.write(max_score)
         st.write(input_im)
         st.write(type(max_score))
