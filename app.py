@@ -1,7 +1,7 @@
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-from model_methods import predict, orig_img, normalize_image, plot_maps, tensor_predict
+from model_methods import predict, orig_img, normalize_image, plot_maps, plot_gradient_maps
 
 # configuration of the page
 st.set_page_config(
@@ -43,13 +43,6 @@ if st.button('Classify'):
    with col2:
         input_im = orig_img(new_img) # output tensor
         # grad = grads(input_im) # buggy - giving nonetype
-        with tf.GradientTape() as tape:
-            tape.watch(input_im)
-            result_img = tensor_predict(input_im)
-            max_idx = tf.argmax(result_img,axis = 1)
-            max_score = tf.math.reduce_max(result_img[0,max_idx[0]]) # tensor max probability
-            #max_score = result_img[0,max_idx[0]]
-        grads = tape.gradient(max_score, input_im)
-        st.write(grads)
+        plot_gradient_maps(input_im)
         
         #plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
