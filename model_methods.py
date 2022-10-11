@@ -39,7 +39,6 @@ def input_img(new_img): #read source image file
     image = tf.expand_dims(image, axis=0)
     image = tf.cast(image, tf.float32)
     image = tf.image.resize(image, [160,160])
-    st.write(image.shape)
     return image
 def orig_img(new_img):
     input_im = input_img(new_img)
