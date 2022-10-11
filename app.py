@@ -1,6 +1,8 @@
 import numpy as np
 import streamlit as st
 import tensorflow as tf
+from PIL import Image
+import io
 from model_methods import predict, orig_img, normalize_image, plot_maps, plot_gradient_maps, gradCAM
 
 # configuration of the page
