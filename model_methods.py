@@ -42,9 +42,10 @@ def orig_img(image):
     img = img.resize((160,160))
     img = tf.keras.preprocessing.image.img_to_array(img)
     #Preprocess the image to required size and cast
-    input_tensor= np.array(np.expand_dims(img,0), dtype=np.float32)
-    input_im = tf.keras.applications.efficientnet_v2.preprocess_input(input_tensor)
-    return input_im
+    input_array = np.array(np.expand_dims(img,0), dtype=np.float32)
+    input_array = tf.keras.applications.efficientnet_v2.preprocess_input(input_array)
+    input_tensor = tf.convert_to_tensor(input_array)
+    return input_tensor
 
 # input_im = orig_img(image) # new image
 
