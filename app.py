@@ -48,5 +48,8 @@ if st.button('Classify'):
         st.caption('Saliency map')
         
    with col3:
-        gradCAM(new_img, intensity=0.5, res=250)
+        #gradCAM(new_img, intensity=0.5, res=250)
+        img = Image.frombytes('RGB',(160,160),new_img.read())
+        st.write(type(img))
+        st.write(img)
         st.caption('Activation heatmap')
