@@ -1,7 +1,7 @@
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-from model_methods import predict, orig_img, plot_gradient_maps, normalize_image, plot_maps
+from model_methods import predict, orig_img, grads, normalize_image, plot_maps
 
 # configuration of the page
 st.set_page_config(
@@ -42,4 +42,5 @@ if st.button('Classify'):
         st.caption('Original')
    with col2:
         input_im = orig_img(new_img)
-        plot_gradient_maps(input_im, result)
+        grad = grads(input_im, result) # buggy - giving nonetype
+        plot_maps(normalize_image(grad[0]), normalize_image(input_im[0]))
