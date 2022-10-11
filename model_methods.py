@@ -55,9 +55,10 @@ def normalize_image(img): #normalise image
     return grads_norm
 # see this for cmap options: https://matplotlib.org/stable/tutorials/colors/colormaps.html
 def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2): 
-    fig = plt.imshow(img1*mix_val+img2/mix_val, cmap = "terrain" )
+    fig, ax = plt.subplots()
+    im = ax.imshow(img1*mix_val+img2/mix_val, cmap = "terrain" )
     plt.axis("off");
-    return st.pyplot(fig)
+    st.pyplot(im)
     #st.caption('Saliency Map')
     
 
@@ -69,4 +70,4 @@ def plot_gradient_maps(input_im, result): # plot_maps() and predict() function e
         max_score = tf.math.reduce_max(result[0,max_idx[0]])
         #max_score = result[0,max_idx[0]]
     grads = tape.gradient(max_score, input_im)
-    return plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
+    plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
