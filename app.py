@@ -16,7 +16,7 @@ st.set_page_config(
 st.title('👁️ Eye Disease classifier')
 st.info('Only classifies Cataract, Diabetic retinopathy, Glaucoma or Normal. \n\n Model is restricted to giving 1 class at a time')
 
-new_img = st.file_uploader('PLease upload your retinal image')
+new_img = st.file_uploader('Please upload your retinal image in .png or .jpeg/.jpg format')
 
 def predict_upload():
   result = predict(new_img) # result is a probabilities array 
