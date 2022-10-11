@@ -59,6 +59,7 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):
     plt.axis("off");
     st.pyplot(fig)
     st.caption('Saliency Map')
+    return fig
 
 def plot_gradient_maps(input_im, result): # plot_maps() and predict() function embedded        
     with tf.GradientTape() as tape:
