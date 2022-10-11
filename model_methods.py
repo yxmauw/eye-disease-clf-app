@@ -88,9 +88,7 @@ def plot_gradient_maps(input_im): # plot_maps() and predict() function embedded
 import cv2
 
 def gradCAM(orig, intensity=0.5, res=250): # function
-  #img = Image.open(io.BytesIO(orig.read())
-  img = Image.frombuffer('RGBA', (160,160), orig.read())
-  #img = Image.open(io.BytesIO(orig))
+  img = Image.open(io.BytesIO(orig.read()))
   img = img.convert('RGB')
   # Resize the image to the desired size
   img = img.resize((160,160))
