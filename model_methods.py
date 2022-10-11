@@ -70,5 +70,4 @@ def plot_gradient_maps(input_im, result): # plot_maps() and predict() function e
         max_score = tf.math.reduce_max(result[0,max_idx[0]])
         #max_score = result[0,max_idx[0]]
     grads = tape.gradient(max_score, input_im)
-    st.write(type(input_im))
     plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
