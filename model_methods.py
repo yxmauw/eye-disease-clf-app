@@ -61,13 +61,14 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):
     st.pyplot(im)
     #st.caption('Saliency Map')
     
-
-def plot_gradient_maps(input_im, result): # plot_maps() and predict() function embedded        
+def grads(input_im, result): # plot_maps() and predict() function embedded        
     with tf.GradientTape() as tape:
         tape.watch(input_im)
         #result_img = predict(raw_img)
         max_idx = tf.argmax(result,axis = 1)
         max_score = tf.math.reduce_max(result[0,max_idx[0]])
         #max_score = result[0,max_idx[0]]
-    grads = tape.gradient(max_score, input_im) # buggy - giving nonetype
-    plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
+    return tape.gradient(max_score, input_im)
+
+    #grad = grads(input_im, result)# buggy - giving nonetype
+    #plot_maps(normalize_image(grad[0]), normalize_image(input_im[0]))
