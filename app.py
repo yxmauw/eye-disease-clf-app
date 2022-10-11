@@ -38,4 +38,5 @@ if st.button('Classify'):
    col1, col2, col3 = st.columns(3)
    with col1:
         st.image(new_img)
+        st.caption('Original')
     
