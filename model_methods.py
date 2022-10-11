@@ -81,8 +81,8 @@ def grads(input_im): # plot_maps() and predict() function embedded
         tape.watch(input_im)
         result_img = tensor_predict(input_im)
         max_idx = tf.argmax(result_img,axis = 1)
-        max_score = tf.math.reduce_max(result_img[0,max_idx[0]])
-        #max_score = result[0,max_idx[0]]
+        #max_score = tf.math.reduce_max(result_img[0,max_idx[0]])
+        max_score = result[0,max_idx[0]]
     return tape.gradient(max_score, input_im)
 
     #grad = grads(input_im, result)# buggy - giving nonetype
