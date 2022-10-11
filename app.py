@@ -1,7 +1,7 @@
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-from model_methods import predict, orig_img, plot_gradient_maps
+from model_methods import predict, orig_img, plot_gradient_maps, normalize_image, plot_maps
 
 # configuration of the page
 st.set_page_config(
