@@ -43,10 +43,10 @@ def orig_img(image):
   
     #Preprocess the image to required size and cast
     #input_shape = input_details[0]['shape']
-    input_tensor= np.array(np.expand_dims(img,0), dtype=np.float32)
-    input_tensor= tf.keras.applications.efficientnet_v2.preprocess_input(input_tensor)
+    input_array= np.array(np.expand_dims(img,0), dtype=np.float32)
+    input_array= tf.keras.applications.efficientnet_v2.preprocess_input(input_array)
 
-    #input_tensor = tf.convert_to_tensor(input_array)
+    input_tensor = tf.convert_to_tensor(input_array)
     return input_tensor # output tensor format of image
 
 def normalize_image(img): #normalise image
