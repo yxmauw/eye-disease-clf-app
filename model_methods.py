@@ -46,7 +46,10 @@ def tensor_predict(input_tensor): # to predict tensor images
 
         #Run the inference
         interpreter.invoke()
-        output_details = interpreter.get_tensor(output_details[0]['index'])
+        output_details = interpreter.get_tensor(output_details[0]['index']) # output np.array
+        
+        #convert to tensor
+        output_details = tf.convert_to_tensor(output_details)
         return output_details
 
 def orig_img(image):   
