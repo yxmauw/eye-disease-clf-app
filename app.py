@@ -5,7 +5,7 @@ from model_methods import predict
 
 # configuration of the page
 st.set_page_config(
-    layout='centered',
+    layout='wide',
     page_icon='👁️',
     page_title='Eye Disease Classifier',
     initial_sidebar_state='auto'
@@ -35,3 +35,7 @@ if st.button('Submit'):
             Please upload retinal image for classification. 
             \n\n Thank you 🙏
             ''')
+            
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.image(new_img)
