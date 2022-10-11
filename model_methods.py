@@ -83,3 +83,7 @@ def plot_gradient_maps(input_im): # plot_maps() and predict() function embedded
         max_score = tf.math.reduce_max(result_img[0,max_idx[0]]) # tensor max probability
     grads = tape.gradient(max_score, input_im)
     plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
+
+ # Activation heatmap
+import cv2
+from google.colab.patches import cv2_imshow # cv2.imshow does not work on Google Colab notebooks, which is why we are using cv2_imshow instead
