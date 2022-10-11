@@ -41,6 +41,4 @@ if st.button('Classify'):
         st.caption('Original')
    with col2:
         input_im = orig_img(new_img)
-        st.write(input_im)
-        st.write(type(input_im))
         plot_gradient_maps(input_im)
