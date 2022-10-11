@@ -123,4 +123,4 @@ def gradCAM(orig, intensity=0.5, res=250): # function
   img = heatmap * intensity + img
   
   img1 = cv2.resize(img, (res, res)) # visualise heatmap overlay
-  st.image(cv2.imshow(img1))
+  st.image(img1)
