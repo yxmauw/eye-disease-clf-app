@@ -43,4 +43,5 @@ if st.button('Classify'):
         input_im = orig_img(new_img)
         grad = grads(input_im) # buggy - giving nonetype
         st.write(grad)
+        st.write(type(input_im))
         plot_maps(normalize_image(grad[0]), normalize_image(input_im[0]))
