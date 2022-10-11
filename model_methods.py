@@ -57,14 +57,14 @@ def normalize_image(img): #normalise image
         return grads_norm
 
 # see this for cmap options: https://matplotlib.org/stable/tutorials/colors/colormaps.html
-def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2): 
-        fig = plt.figure(figsize=(5,5)) # try different values
-        ax = plt.axes()
-        #fig, ax = plt.subplots(figsize=(8,8))
+def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):     # saliency map  
+        fig, ax = plt.subplots(figsize=(5,5))
         ax.imshow(img1*mix_val+img2/mix_val, cmap = "terrain" )
         plt.axis("off")
-        st.pyplot(fig)
-        #st.caption('Saliency Map')
+        fig.savefig("temp_fig.png")
+        image = Image.open('temp_fig.png')
+        st.image(image)
+        #st.pyplot(fig)
 
 def f1_score(y_true, y_pred): #taken from old keras source code
         true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
