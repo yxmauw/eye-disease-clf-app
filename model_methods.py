@@ -76,7 +76,7 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):
     fig, ax = plt.subplots()
     ax.imshow(img1*mix_val+img2/mix_val, cmap = "terrain" )
     plt.axis("off");
-    st.pyplot()
+    st.pyplot(fig)
     #st.caption('Saliency Map')
 
 # load full Saved model for Saliency and activation maps, unable to use tf lite model for these unless previously specified upon model construct
