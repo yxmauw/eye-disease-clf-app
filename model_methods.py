@@ -79,14 +79,31 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):
     st.pyplot(im)
     #st.caption('Saliency Map')
     
-def grads(input_im): # plot_maps() and predict() function embedded        
+def plot_gradient_maps(input_im): # plot_maps() and predict() function embedded        
     with tf.GradientTape() as tape:
         tape.watch(input_im)
-        result_img = tensor_predict(input_im)
+        # instantiate tf lite model, input is input_tensor
+        interpreter = tf.lite.Interpreter('ENet_model.tflite')
+        interpreter.allocate_tensors()
+        #get input and output tensors
+        input_details = interpreter.get_input_details()
+        output_details = interpreter.get_output_details()
+      
+        # Invoke the model on the input data
+        interpreter.set_tensor(input_details[0]['index'], input_im)
+
+        #Run the inference
+        interpreter.invoke()
+        output_details = interpreter.get_tensor(output_details[0]['index']) # output np.array
+        
+        #convert to tensor
+        result_img = tf.convert_to_tensor(output_details)
+        #result_img = tensor_predict(input_im)
+        # original grads function
         max_idx = tf.argmax(result_img,axis = 1)
         max_score = tf.math.reduce_max(result_img[0,max_idx[0]]) # tensor max probability
         #max_score = result_img[0,max_idx[0]]
-    return tape.gradient(max_score, input_im)
+    grads = tape.gradient(max_score, input_im)
 
     #grad = grads(input_im, result)# buggy - giving nonetype
-    #plot_maps(normalize_image(grad[0]), normalize_image(input_im[0]))
+    plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
