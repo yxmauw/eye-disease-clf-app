@@ -6,12 +6,6 @@ from PIL import Image
 import io
 import matplotlib.pyplot as plt
 
-@st.cache
-def full_model():
-        model = tf.keras.models.load_model("ENet_ep20_val0.311", 
-                                            custom_objects={'f1_score': f1_score})
-        return model
-
 def predict(image): # to predict raw image input
         interpreter = tf.lite.Interpreter('ENet_model.tflite')
         interpreter.allocate_tensors()
@@ -78,10 +72,13 @@ def f1_score(y_true, y_pred): #taken from old keras source code
     f1_val = 2*(precision*recall)/(precision+recall+K.epsilon())
     return f1_val
 
+model = tf.keras.models.load_model("ENet_ep20_val0.311", 
+                                    custom_objects={'f1_score': f1_score})
+
 def plot_gradient_maps(input_im): # plot_maps() and predict() function embedded        
     with tf.GradientTape() as tape:
         tape.watch(input_im)   
-        result_img = full_model()(input_im)
+        result_img = model(input_im)
         max_idx = tf.argmax(result_img,axis = 1)
         max_score = tf.math.reduce_max(result_img[0,max_idx[0]]) # tensor max probability
     grads = tape.gradient(max_score, input_im)
