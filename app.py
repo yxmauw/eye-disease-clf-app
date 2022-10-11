@@ -50,5 +50,5 @@ if st.button('Classify'):
    with col3:
         # gradCAM(new_img, intensity=0.5, res=250)
         st.write(type(new_img))
-        st.write(type(io.BytesIO(new_img.read())))
+        st.write(type(new_img.read()))
         st.caption('Activation heatmap')
