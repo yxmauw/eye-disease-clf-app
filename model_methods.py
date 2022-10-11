@@ -62,7 +62,7 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):
     #st.caption('Saliency Map')
     
 def grads(input_im, result): # plot_maps() and predict() function embedded        
-    with tf.GradientTape() as tape:
+    with tf.GradientTape(watch_accessed_variables=False) as tape:
         tape.watch(input_im)
         #result_img = predict(raw_img)
         max_idx = tf.argmax(result,axis = 1)
