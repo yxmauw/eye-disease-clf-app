@@ -25,7 +25,7 @@ def predict_upload():
   st.success(f'There is a **{pred_prob}** % probability that this retinal image shows **{pred_class}**')
   
 # instantiate submit button
-if st.button('Submit'):
+if st.button('Classify'):
    with st.sidebar:
        try: 
             predict_upload()
@@ -36,6 +36,6 @@ if st.button('Submit'):
             \n\n Thank you 🙏
             ''')
             
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.image(new_img)
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.image(new_img)
