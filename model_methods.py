@@ -5,6 +5,8 @@ import streamlit as st
 from PIL import Image
 import io
 import matplotlib.pyplot as plt
+import keras.backend as K # F1 score metric custom object
+import cv2 # Activation heatmap
 
 def predict(image): # to predict raw image input
         interpreter = tf.lite.Interpreter('ENet_model.tflite')
@@ -61,8 +63,6 @@ def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):
     st.pyplot(fig)
     #st.caption('Saliency Map')
 
-# load full Saved model for Saliency and activation maps, unable to use tf lite model for these unless previously specified upon model construct
-import keras.backend as K # F1 score metric custom object
 def f1_score(y_true, y_pred): #taken from old keras source code
     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
     possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
@@ -72,6 +72,7 @@ def f1_score(y_true, y_pred): #taken from old keras source code
     f1_val = 2*(precision*recall)/(precision+recall+K.epsilon())
     return f1_val
 
+# load full Saved model for Saliency and activation maps, unable to use tf lite model for these unless previously specified upon model construct
 model = tf.keras.models.load_model("ENet_ep20_val0.311", 
                                     custom_objects={'f1_score': f1_score})
 
@@ -85,8 +86,6 @@ def plot_gradient_maps(input_im): # plot_maps() and predict() function embedded
     plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
 
  # Activation heatmap
-import cv2
-
 def gradCAM(orig, intensity=0.5, res=250): # function
   img = Image.open(io.BytesIO(orig.getvalue()))
   img = img.convert('RGB')
