@@ -89,7 +89,7 @@ def plot_gradient_maps(input_im): # plot_maps() and predict() function embedded
         plot_maps(normalize_image(grads[0]), normalize_image(input_im[0]))
 
  # Activation heatmap
-def gradCAM(orig, intensity=0.5, res=512): # function
+def gradCAM(orig, intensity=0.5, res=270): # function
         img = Image.open(io.BytesIO(orig.getvalue()))
         img = img.convert('RGB')
         # Resize the image to the desired size
