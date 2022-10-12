@@ -58,7 +58,7 @@ def normalize_image(img): #normalise image
 
 # see this for cmap options: https://matplotlib.org/stable/tutorials/colors/colormaps.html
 def plot_maps(img1, img2,vmin=0.3,vmax=0.7, mix_val=2):     # saliency map  
-        fig, ax = plt.subplots(figsize=(3.25,3.25))
+        fig, ax = plt.subplots(figsize=(3.3,3.3))
         ax.imshow(img1*mix_val+img2/mix_val, cmap = "terrain" )
         plt.axis("off")
         fig.savefig("temp_fig.png", transparent=True, frameon=False, bbox_inches='tight', pad_inches = 0)
