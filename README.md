@@ -1,4 +1,4 @@
-# Eye Disease Classification app 
+# Eye Disease Classifier app 
 
 This app is associated with [eye-disease-classification project](https://github.com/yxmauw/eye-disease-classification)
 
