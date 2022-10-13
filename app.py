@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 st.title('👁️ Eye Disease classifier')
-st.info('Only classifies **Cataract**, **Diabetic retinopathy**, **Glaucoma** or **Normal**. \n\n Model is restricted to giving 1 class at a time')
+st.info('Only classifies **Cataract**, **Diabetic retinopathy**, **Glaucoma** or **Normal**. \n\n Model is restricted to giving **1** class at a time')
 
 new_img = st.file_uploader('Please upload your retinal image in .png or .jpeg/.jpg format')
 
