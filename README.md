@@ -4,7 +4,7 @@ This app is associated with [eye-disease-classification project](https://github.
 
 Using [Streamlit](https://streamlit.io/) library
  
-Launched on [Huggingface spaces](https://huggingface.co/spaces), please [![Generic badge](https://img.shields.io/badge/🤗-Open%20In%20Spaces-blue.svg)](https://huggingface.co/spaces/yxmauw/eye-disease-clf-app)
+Launched on [Huggingface spaces](https://huggingface.co/spaces), please [![Generic badge](https://img.shields.io/badge/🤗-Open%20In%20Spaces-blue.svg)](https://huggingface.co/spaces/yxmauw/eye-disease-clf-app). Enjoy!
 
 _Notes:_
 _App repeatedly exceeded Streamlit cloud resource limits, so had to use alternative cloud app launch space_
