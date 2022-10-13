@@ -24,7 +24,10 @@ def predict_upload():
   max_result = (np.max(result, axis=-1)) * 100 # max probability
   pred_prob = np.format_float_positional(max_result, precision=2) # format probability
   pred_class = classes[(np.argmax(result, axis=-1)[0])] # string
-  st.success(f'There is a **{pred_prob}** % probability that this retinal image shows **{pred_class}**')
+  st.write(f'### There is a')
+  st.success(f'# {pred_prob}% probability')
+  st.write(f'### that this retinal image shows')
+  st.success(f'# {pred_class}')
   
 # instantiate submit button
 if st.button('Classify'):
