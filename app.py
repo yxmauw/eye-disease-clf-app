@@ -20,7 +20,7 @@ new_img = st.file_uploader('Please upload your retinal image in .png or .jpeg/.j
 
 def predict_upload():
   result = predict(new_img) # result is a probabilities array 
-  classes = ['cataract', 'diabetic_retinopathy', 'glaucoma', 'normal']
+  classes = ['cataract', 'diabetic retinopathy', 'glaucoma', 'normal']
   max_result = (np.max(result, axis=-1)) * 100 # max probability
   pred_prob = np.format_float_positional(max_result, precision=2) # format probability
   pred_class = classes[(np.argmax(result, axis=-1)[0])] # string
@@ -57,11 +57,5 @@ if st.button('Classify'):
              \n\n Thank you 🙏
              ''')
 
-with st.container():                
-   st.write('''DISCLAIMER: THIS WEBSITE DOES NOT REPLACE MEDICAL ADVICE \n\n 
-     The information, including but not limited to, text, graphics, images and other material contained on this website are for 
-    informational purposes only. No material on this site is intended to be a substitute for professional medical advice, diagnosis or 
-    treatment. Always seek the advice of a physician or other qualified health care provider with any questions you may have regarding a 
-    medical condition or treatment and before undertaking a new health care regimen, and never disregard professional medical advice or 
-    delay in seeking it because of something you have read on this website.
-     ''')
+st.write('##')            
+st.write('DISCLAIMER: THIS WEBSITE DOES NOT REPLACE MEDICAL ADVICE \n\n The information, including but not limited to, text, graphics, images and other material contained on this website are for informational purposes only. No material on this site is intended to be a substitute for professional medical advice, diagnosis or treatment. Always seek the advice of a physician or other qualified health care provider with any questions you may have regarding a medical condition or treatment and before undertaking a new health care regimen, and never disregard professional medical advice or delay in seeking it because of something you have read on this website.')
