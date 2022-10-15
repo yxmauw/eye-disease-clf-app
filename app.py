@@ -31,15 +31,10 @@ def predict_upload():
   
 # instantiate submit button
 if st.button('Classify'):
-   with st.sidebar:
-       try: 
+   if new_img is not None:
+        with st.sidebar: 
             predict_upload()   
-       except:
-            st.warning('''
-            Unable to detect image. 
-            Please upload retinal image for classification. 
-            \n\n Thank you 🙏
-            ''')
+
    col1, col2, col3 = st.columns(3)
    with col1:
         st.image(new_img)
@@ -53,3 +48,20 @@ if st.button('Classify'):
    with col3:
         gradCAM(new_img, intensity=0.5, res=250)
         st.caption('Activation heatmap')
+        
+   if new_img is None:
+        with st.sidebar: 
+             st.warning('''
+             Unable to detect image. 
+             Please upload retinal image for classification. 
+             \n\n Thank you 🙏
+             ''')
+
+with st.container():                
+   st.write('''DISCLAIMER: THIS WEBSITE DOES NOT REPLACE MEDICAL ADVICE \n\n 
+     The information, including but not limited to, text, graphics, images and other material contained on this website are for 
+    informational purposes only. No material on this site is intended to be a substitute for professional medical advice, diagnosis or 
+    treatment. Always seek the advice of a physician or other qualified health care provider with any questions you may have regarding a 
+    medical condition or treatment and before undertaking a new health care regimen, and never disregard professional medical advice or 
+    delay in seeking it because of something you have read on this website.
+     ''')
